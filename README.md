@@ -29,16 +29,16 @@ ollama --version
 ### 1.2 Descarga el modelo
 
 ```
-ollama pull qwen3:4b
+ollama pull qwen3:8b
 ```
 
-Pesa unos 2,5 GB. Es el modelo recomendado: buena calidad y velocidad aceptable aunque tu equipo no tenga tarjeta gráfica.
+Pesa unos 5,2 GB y necesita unos 8 GB de RAM libres. Es el modelo recomendado: da los prompts más útiles y, como escribe de forma concisa, tarda casi lo mismo que los modelos pequeños.
 
 | Modelo | Tamaño | Cuándo usarlo |
 |---|---|---|
-| `qwen3:4b` | 2,5 GB | **Recomendado.** Mejor equilibrio entre calidad y velocidad. |
-| `qwen2.5:3b` | 1,9 GB | Equipos con poca memoria. Más rápido, pero prompts más genéricos. |
-| `qwen3:8b` | 5,2 GB | Más calidad. Tarda más o menos el doble sin tarjeta gráfica. |
+| `qwen3:8b` | 5,2 GB | **Recomendado.** Prompts concretos y sensatos. La herramienta lo elige por defecto. |
+| `qwen3:4b` | 2,5 GB | Equipos con menos de 12 GB de RAM. Más flojo: a veces inventa límites o pasos sin sentido. |
+| `qwen2.5:3b` | 1,9 GB | Solo si los anteriores no caben. Prompts bastante genéricos. |
 
 Puedes tener varios: la herramienta te deja elegir entre todos los que tengas instalados.
 
@@ -94,16 +94,16 @@ Cierra la pestaña del navegador y la ventana minimizada **"Generador de Prompts
 
 ## 3. Cómo usarla
 
-1. **Elige el modelo** en el selector *Modelo de Ollama* (por defecto, `qwen3:4b`). La herramienta recuerda tu elección.
+1. **Elige el modelo** en el selector *Modelo de Ollama* (por defecto, `qwen3:8b`). La herramienta recuerda tu elección.
 2. **Escribe tu mensaje** en *Tu mensaje*, tal como te salga. Ejemplos:
    - `nesesito un correo pa pedir aumento pero q no suene desesperado`
-   - `kiero aprender python pero tengo poco tiempo`
-   - `ayudame con mi pc q va lentisima`
-3. Pulsa **GENERAR PROMPT ↗** (o `Ctrl + Enter`).
-4. Espera a que termine. La tarjeta muestra los segundos transcurridos:
-   - La **primera vez** tarda más (unos 70 s) porque carga el modelo en memoria.
-   - Las siguientes, unos **30–40 s** en un equipo sin tarjeta gráfica.
-5. Revisa el resultado y pulsa **COPIAR**. Se copia el prompt completo, listo para pegar en ChatGPT, Claude, Gemini u otra IA.
+   - `quiero vender mis dibujos por instagram pero nadie me sigue`
+   - `un discurso pa la boda de mi hermana q de risa pero tambien emocione`
+3. Pulsa **Enter** (o el botón **GENERAR PROMPT ↗**). Para hacer un salto de línea dentro del mensaje, usa **Shift + Enter**.
+4. El prompt se va escribiendo en la tarjeta en tiempo real, sección por sección. En un equipo sin tarjeta gráfica:
+   - La **primera vez** tarda en empezar (1–2 min) porque carga el modelo en memoria.
+   - Las siguientes, el texto empieza a salir en unos **10 s** y el prompt completo tarda unos **2–2,5 min**.
+5. Cuando termine, pulsa **COPIAR**. Se copia el prompt completo, listo para pegar en ChatGPT, Claude, Gemini u otra IA.
 6. **Rellena los marcadores** entre corchetes, como `[nombre del jefe]` o `[tu sistema operativo]`. La herramienta los pone en lugar de inventar datos que no le diste.
 
 **Si te hace preguntas:** cuando el mensaje es muy ambiguo (por ejemplo, `quiero hacer una app`), la tarjeta muestra hasta 2 preguntas. Respóndelas y pulsa **RESPONDER Y GENERAR ↗**. Si dejas alguna en blanco, asumirá lo más razonable.
@@ -124,10 +124,11 @@ Cierra la pestaña del navegador y la ventana minimizada **"Generador de Prompts
 |---|---|
 | **OLLAMA SIN CONEXIÓN** durante más de un minuto | Abre la app de Ollama a mano (o ejecuta `ollama serve` en una terminal). Se reconecta sola. |
 | "Abre la herramienta con iniciar.bat" | Abriste el HTML con doble clic. Usa el acceso directo o `iniciar.bat`. |
-| **SIN MODELOS INSTALADOS** | Ejecuta `ollama pull qwen3:4b` y recarga la página. |
+| **SIN MODELOS INSTALADOS** | Ejecuta `ollama pull qwen3:8b` y recarga la página. |
 | "No se encontró Python" | Instala Python (ver 1.3) marcando "Add Python to PATH". |
 | "No se pudo iniciar el servidor" | Otro programa usa el puerto 8000. Ciérralo o reinicia el PC. |
-| Tarda mucho | Es normal en equipos sin tarjeta gráfica. Prueba `qwen2.5:3b` (más rápido) y cierra programas pesados. |
+| Tarda mucho | Es normal en equipos sin tarjeta gráfica (unos 2 min por prompt). Cierra programas pesados. Si tu PC tiene poca RAM, prueba `qwen3:4b`. |
+| El acceso directo no muestra el icono | Comprueba que `icono.ico` sigue en la carpeta del proyecto. Si acabas de crearlo, puede tardar en aparecer: reinicia el Explorador o el PC. |
 | "El modelo devolvió un formato inesperado" | Pulsa otra vez **GENERAR PROMPT**. Si se repite, prueba con otro modelo. |
 
 ### Encenderla sin `iniciar.bat`
