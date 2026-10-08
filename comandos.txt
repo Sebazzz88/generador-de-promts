@@ -1,0 +1,97 @@
+GENERADOR DE PROMPTS - COMANDOS PARA INICIARLO
+==============================================
+
+Copia y pega cada comando en PowerShell (menú Inicio > escribe "PowerShell").
+
+
+------------------------------------------------
+FORMA RÁPIDA
+------------------------------------------------
+
+Doble clic en el acceso directo "Generador de Prompts" del escritorio
+(o en iniciar.bat, dentro de la carpeta del proyecto). Hace los pasos 1 a 4 por ti:
+enciende Ollama si hace falta, enciende el servidor y abre el navegador.
+
+Para apagarlo: cierra la ventana minimizada "Generador de Prompts - cierra esta
+ventana para apagarlo" de la barra de tareas.
+
+Los pasos de abajo son para hacerlo a mano.
+
+
+------------------------------------------------
+PASO 1 - Encender Ollama
+------------------------------------------------
+
+Si ves el icono de la llama junto al reloj de Windows, ya está encendido: salta al paso 2.
+
+Si no, abre la app de Ollama desde el menú Inicio, o ejecuta:
+
+    ollama serve
+
+(Si dice "address already in use", Ollama ya estaba encendido. Todo bien.)
+Si usaste "ollama serve", deja esa ventana abierta y abre OTRA PowerShell para el paso 2.
+
+
+------------------------------------------------
+PASO 2 - Ir a la carpeta del proyecto
+------------------------------------------------
+
+    cd "C:\Users\sebas_k6g3i41\OneDrive\Desktop\generador de promts"
+
+
+------------------------------------------------
+PASO 3 - Encender el servidor de la herramienta
+------------------------------------------------
+
+    python -m http.server 8000 --bind 127.0.0.1
+
+Deja esta ventana abierta mientras uses la herramienta.
+
+
+------------------------------------------------
+PASO 4 - Abrir la herramienta en el navegador
+------------------------------------------------
+
+Pega esta dirección en el navegador:
+
+    http://localhost:8000/generador-de-prompts.html
+
+Arriba debe decir "MODELO ACTIVO" con un punto verde.
+
+
+------------------------------------------------
+APAGARLO
+------------------------------------------------
+
+En la ventana del paso 3 pulsa:  Ctrl + C
+(Si encendiste Ollama con "ollama serve", pulsa Ctrl + C también en esa ventana.)
+
+
+------------------------------------------------
+COMANDOS ÚTILES
+------------------------------------------------
+
+Ver qué modelos tienes instalados:
+    ollama list
+
+Descargar el modelo recomendado (solo la primera vez):
+    ollama pull qwen3:8b
+
+Descargar un modelo más ligero (para PCs con poca RAM):
+    ollama pull qwen3:4b
+
+Comprobar que Ollama responde:
+    ollama --version
+
+Comprobar que Python está instalado:
+    python --version
+
+
+------------------------------------------------
+SI ALGO FALLA
+------------------------------------------------
+
+"OLLAMA SIN CONEXIÓN" en la página  -> Haz el paso 1. La página se reconecta sola.
+"SIN MODELOS INSTALADOS"            -> ollama pull qwen3:8b  y recarga la página.
+El paso 3 dice que el puerto está ocupado -> Ya hay otro servidor abierto: usa ese,
+                                            o ciérralo y vuelve a ejecutar el paso 3.
