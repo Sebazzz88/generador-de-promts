@@ -64,19 +64,31 @@ O desde GitHub: botón verde **Code → Download ZIP** y descomprímelo.
 
 ## 2. Cómo encenderla
 
-1. **Abre Ollama.** Búscalo en el menú Inicio y ábrelo; queda como un icono de llama junto al reloj de Windows. Si ese icono ya está ahí, Ollama ya está encendido.
-2. **Haz doble clic en `iniciar.bat`** dentro de la carpeta del proyecto.
-   - Se abre una ventana negra (el servidor) y, enseguida, el navegador con la herramienta en `http://localhost:8000/generador-de-prompts.html`.
-   - **No cierres la ventana negra** mientras uses la herramienta.
-3. Comprueba la etiqueta de arriba del título:
-   - **● MODELO ACTIVO** (con punto verde): todo listo.
-   - **OLLAMA SIN CONEXIÓN**: Ollama no está abierto. Ábrelo y la herramienta se conecta sola en unos segundos.
+### Crear el acceso directo en el escritorio (solo la primera vez)
+
+Clic derecho en `iniciar.bat` → **Mostrar más opciones** → **Enviar a** → **Escritorio (crear acceso directo)**.
+
+Opcional: clic derecho en el acceso directo → **Propiedades** → **Cambiar icono...** → elige `icono.ico` de la carpeta del proyecto, y en **Ejecutar** elige **Minimizada**.
+
+### Encenderla
+
+**Doble clic en el acceso directo** (o en `iniciar.bat`). Hace todo solo:
+
+1. Enciende Ollama si estaba apagado.
+2. Enciende el servidor de la herramienta en una ventana **minimizada** en la barra de tareas.
+3. Abre la herramienta en el navegador (`http://localhost:8000/generador-de-prompts.html`).
+
+Si ya estaba encendida, solo abre la página otra vez.
+
+Comprueba la etiqueta de arriba del título:
+- **● MODELO ACTIVO** (con punto verde): todo listo.
+- **OLLAMA SIN CONEXIÓN**: Ollama todavía está arrancando. Espera unos segundos; la herramienta se conecta sola.
 
 > **¿Por qué no basta con hacer doble clic en el archivo HTML?** Ollama, por seguridad, rechaza las páginas abiertas directamente desde el disco. `iniciar.bat` sirve la página en `localhost`, que Ollama sí acepta.
 
 ### Apagarla
 
-Cierra la pestaña del navegador y la ventana negra de `iniciar.bat`. Ollama puede seguir abierto; no consume casi nada mientras no se usa y libera el modelo de la memoria a los 15 minutos.
+Cierra la pestaña del navegador y la ventana minimizada **"Generador de Prompts - cierra esta ventana para apagarlo"** de la barra de tareas. Ollama puede seguir abierto; no consume casi nada mientras no se usa y libera el modelo de la memoria a los 15 minutos.
 
 ---
 
@@ -110,10 +122,11 @@ Cierra la pestaña del navegador y la ventana negra de `iniciar.bat`. Ollama pue
 
 | Qué ves | Qué hacer |
 |---|---|
-| **OLLAMA SIN CONEXIÓN** | Abre la app de Ollama (o ejecuta `ollama serve` en una terminal). Se reconecta sola. |
-| "Abre la herramienta con iniciar.bat" | Abriste el HTML con doble clic. Usa `iniciar.bat`. |
+| **OLLAMA SIN CONEXIÓN** durante más de un minuto | Abre la app de Ollama a mano (o ejecuta `ollama serve` en una terminal). Se reconecta sola. |
+| "Abre la herramienta con iniciar.bat" | Abriste el HTML con doble clic. Usa el acceso directo o `iniciar.bat`. |
 | **SIN MODELOS INSTALADOS** | Ejecuta `ollama pull qwen3:4b` y recarga la página. |
-| La ventana negra se cierra y dice que no pudo iniciar el servidor | Comprueba `python --version`. Si Python está bien, el puerto 8000 está ocupado: cierra la otra ventana de `iniciar.bat` que tengas abierta. |
+| "No se encontró Python" | Instala Python (ver 1.3) marcando "Add Python to PATH". |
+| "No se pudo iniciar el servidor" | Otro programa usa el puerto 8000. Ciérralo o reinicia el PC. |
 | Tarda mucho | Es normal en equipos sin tarjeta gráfica. Prueba `qwen2.5:3b` (más rápido) y cierra programas pesados. |
 | "El modelo devolvió un formato inesperado" | Pulsa otra vez **GENERAR PROMPT**. Si se repite, prueba con otro modelo. |
 
@@ -134,5 +147,6 @@ Y abre `http://localhost:8000/generador-de-prompts.html` en el navegador.
 | Archivo | Qué es |
 |---|---|
 | `generador-de-prompts.html` | La herramienta completa (HTML, CSS y JS en un solo archivo). |
-| `iniciar.bat` | Enciende el servidor local y abre la herramienta en el navegador. |
+| `iniciar.bat` | Enciende Ollama y el servidor local, y abre la herramienta en el navegador. |
+| `icono.ico` | Icono para el acceso directo del escritorio. |
 | `DESIGN.md` | Sistema de diseño (estilo Hyperstudio) en el que se basa la interfaz. |
